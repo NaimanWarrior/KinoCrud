@@ -51,6 +51,11 @@ namespace KinoCrud.Pages
             //    return Page();
             //}
             var user = await _userManager.FindByEmailAsync(Input.Email);
+             if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Email");
+                return Page();
+            }
             var result = await _signInManager.PasswordSignInAsync(
                 user.UserName!,
                 Input.Password,
