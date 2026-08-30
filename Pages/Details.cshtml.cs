@@ -35,7 +35,7 @@ namespace KinoCrud.Pages
 
             Movie = movie;
 
-            EmbedTrailerUrl = ConvertToEmbedUrl(Movie.TrailterUrl);
+            EmbedTrailerUrl = ConvertToEmbedUrl(Movie.TrailerUrl);
 
             return Page();
         }

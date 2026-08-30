@@ -21,7 +21,7 @@ namespace KinoCrud.DbContext
                     Rate = 8.6,
                     Description = "Когда засуха и вымирание растений приводят человечество к продовольственному кризису...",
                     PosterUrl = "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&q=80",
-                    TrailterUrl = "https://www.youtube.com/watch?v=qcPfI0y7wRU"
+                    TrailerUrl = "https://www.youtube.com/embed/qcPfI0y7wRU"
                 },
                 new Kino
                 {
@@ -30,7 +30,7 @@ namespace KinoCrud.DbContext
                     Rate = 8.8,
                     Description = "Кобб — вор, лучший из лучших в опасном искусстве извлечения...",
                     PosterUrl = "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=500&q=80",
-                    TrailterUrl = "https://www.youtube.com/watch?v=RWUnA-9_b0c"
+                    TrailerUrl = "https://www.youtube.com/embed/RWUnA-9_b0c"
                 },
                 new Kino
                 {
@@ -39,7 +39,7 @@ namespace KinoCrud.DbContext
                     Rate = 9.0,
                     Description = "Бэтмен поднимает ставки в войне с криминалом...",
                     PosterUrl = "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&q=80",
-                    TrailterUrl = "https://www.youtube.com/watch?v=ZAaUUkOIeqI"
+                    TrailerUrl = "https://www.youtube.com/embed/ZAaUUkOIeqI"
                 }
             );
         }

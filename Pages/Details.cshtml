@@ -91,14 +91,13 @@
         <div class="col-12">
             <h3 class="text-warning mb-3"><i class="fa-solid fa-play me-2"></i> Трейлер к фильму</h3>
 
-            @if (!string.IsNullOrEmpty(Model.EmbedTrailerUrl))
+            @if (!string.IsNullOrWhiteSpace(Model.Movie.TrailerUrl))
             {
-                <div class="trailer-container">
-                    <iframe src="@Model.EmbedTrailerUrl"
+                <div class="ratio ratio-16x9 my-4">
+                    <iframe src="@Model.Movie.TrailerUrl"
                             title="Трейлер фильма"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen>
+                            allowfullscreen
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
                     </iframe>
                 </div>
             }
