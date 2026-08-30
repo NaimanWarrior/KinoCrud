@@ -46,28 +46,25 @@ namespace KinoCrud.Pages
         }
         public async Task<IActionResult> OnPostAsync()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return Page();
-            //}
             var user = await _userManager.FindByEmailAsync(Input.Email);
-             if (user == null)
+            if (user != null)
+            {
+                var result = await _signInManager.PasswordSignInAsync(
+                    user.UserName!,
+                    Input.Password,
+                    Input.RememberMe,
+                    lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    return RedirectToPage("/Index");
+                }
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            }
+            else
             {
                 ModelState.AddModelError(string.Empty, "Invalid Email");
-                return Page();
             }
-            var result = await _signInManager.PasswordSignInAsync(
-                user.UserName!,
-                Input.Password,
-                Input.RememberMe,
-                lockoutOnFailure: false);
-
-            if (result.Succeeded)
-            {
-                return RedirectToPage("/Index");
-            }
-
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            Movies = await _context.Kinos.AsNoTracking().ToListAsync();
             return Page();
         }
         public async Task<IActionResult> OnPostLogoutAsync()
