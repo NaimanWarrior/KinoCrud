@@ -36,7 +36,7 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var dbContext = services.GetRequiredService<AppDbContext>();
-        dbContext.Database.Migrate();
+        await dbContext.Database.MigrateAsync();
     } catch (Exception ex)
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
