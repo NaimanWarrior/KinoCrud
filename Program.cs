@@ -15,7 +15,7 @@ builder.Host.ConfigureAppConfiguration((_, config) =>
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    if (!string.IsNullOrEmpty(connectionString) && (connectionString.StartsWith("postgresql://") || connectionString.StartsWith("postgres://")))
+    if (!string.IsNullOrWhiteSpace(connectionString) && (connectionString.StartsWith("postgresql://") || connectionString.StartsWith("postgres://")))
     {
         var databaseUri = new Uri(connectionString);
         var userInfo = databaseUri.UserInfo.Split(':');
