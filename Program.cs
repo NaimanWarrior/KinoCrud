@@ -4,7 +4,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Host.ConfigureAppConfiguration((_, config) =>
+{
+    foreach (var source in config.Sources.OfType<FileConfigurationSource>())
+    {
+        source.ReloadOnChange = false;
+    }
+});
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
