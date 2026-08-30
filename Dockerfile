@@ -14,6 +14,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
+ENV DOTNET_USE_POLLING_FILE_WATCHER=false
+ENV ASPNETCORE_hostBuilder__reloadConfigOnChange=false
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
