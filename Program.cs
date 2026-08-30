@@ -11,7 +11,28 @@ builder.Host.ConfigureAppConfiguration((_, config) =>
         source.ReloadOnChange = false;
     }
 });
+
 // Add services to the container.
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+    if (connectionString != null && (connectionString.StartsWith("postgresql://") || connectionString.StartsWith("postgres://")))
+    {
+        var databaseUri = new Uri(connectionString);
+        var userInfo = databaseUri.UserInfo.Split(':');
+
+        var host = databaseUri.Host;
+        var port = databaseUri.Port > 0 ? databaseUri.Port : 5432;
+        var user = userInfo[0];
+        var password = userInfo.Length > 1 ? userInfo[1] : "";
+        var database = databaseUri.AbsolutePath.TrimStart('/');
+
+        connectionString = $"Host={host};Port={port};Database={database};Username={user};Password={password};SSL Mode=Require;Trust Server Certificate=true";
+    }
+
+    options.UseNpgsql(connectionString);
+});
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
