@@ -128,6 +128,10 @@
                         <input type="password" asp-for="Input.Password" class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Пароль" required>
                         <span asp-validation-for="Input.Password" class="text-danger small"></span>
                     </div>
+                    <div class="form-check text-start me-1">
+                        <input class="form-check-input bg-dark border-secondary" type="checkbox" asp-for="Input.RememberMe">
+                        <label class="form-check-label text-white-50 small" asp-for="Input.RememberMe">Запомнить</label>
+                    </div>
                     <button type="submit" class="btn btn-auth btn-sm">Войти</button>
                     <a asp-page="/Register" class="btn btn-outline-light btn-sm">Регистрация</a>
                 </form>
